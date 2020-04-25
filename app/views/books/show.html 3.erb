@@ -1,0 +1,41 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+ <div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+
+     <%= render 'users/user_info', user_id: @user_id %>
+
+     <%= render 'users/new_book', book: @book %>
+ 
+    </div>
+
+   <div class="col-xs-9">
+
+    <h1>Book detail</h1>
+
+   <table class="table">
+  
+    <tbody>
+     <tr>
+     <td>
+      <%=link_to show_user_path(@book1.user.id) do %>
+      <%= attachment_image_tag @book1.user, :profile_image, :fill, 40, 40, format: "jpeg", class: "img-square pull-left image", fallback: "no_image.jpg", size: "40x40" %><br><br>
+      <%= @user_id.name %>
+      <% end %>
+     </td>
+     <td><p><%=link_to @book1.title, book_path(@book1.id) %></p></td>
+     <td><p><%= @book1.body %></p></td>
+     <% if @book1.user_id == current_user.id %>
+     <td><%=link_to "Edit", edit_book_path(@book1.id) %></td>
+     <td><%=link_to "Destroy", destroy_book_path(@book1.id), method: :delete, "data-confirm" => "Are you sure？" %></td>
+     <% end %>
+     </tr>
+   </tbody> 
+   </table>
+   <p class="text-right">CopyRight Infratop.inc</p>
+   </div>
+  </div>
+ </div>

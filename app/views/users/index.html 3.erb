@@ -1,0 +1,40 @@
+ <% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+ <div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+
+<%= render 'users/user_info', user_id: @user_id %>
+
+<%= render 'users/new_book', book: @book %>
+
+</div>
+
+<div class="col-xs-9">
+ <h1>Users</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+   	  <th><p>image</p></th>
+      <th><p>name</p></th>
+      <th><p></p></th>
+    </tr>
+    </thead>
+<% @users.each do |user| %>
+   <tbody>
+    <tr>
+   <span><td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: "jpeg", class: "img-square pull-left image", fallback: "no_image.jpg",size:'50x50' %></td></span>
+   <td><span><%= user.name %></span></td>
+   <td><%=link_to "Show", show_user_path(user.id) %></td>
+   </tr>
+
+    <% end %>
+</tbody>
+</table>
+</div>
+<p class="text-right">CopyRight Infratop.inc</p>
+</div>
+</div>
